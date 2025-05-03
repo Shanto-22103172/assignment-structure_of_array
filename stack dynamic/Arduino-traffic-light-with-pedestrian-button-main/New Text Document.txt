@@ -1,0 +1,63 @@
+//Assign Pins
+int redlight = 12;
+int yellowlight = 11;
+int greenlight = 10;
+int redwalk = 9;
+const int greenwalk = 8;
+const int buttonPin = 2;
+int buttonState = 0;//set button state to low
+int a;/*IMPORTANT this variables VALUE sets the cycle
+/*of the RED TRAFFIC LIGHT */
+void setup()
+{
+  pinMode(redlight,OUTPUT);
+  pinMode(yellowlight,OUTPUT);
+  pinMode(greenlight,OUTPUT);
+  pinMode(redwalk, OUTPUT);
+  pinMode(greenwalk,OUTPUT);
+  pinMode(buttonPin, INPUT);//What is Read
+   }
+  
+void loop()
+{
+    buttonState = digitalRead(buttonPin);
+  //Variable determines Button State HIGH or LOW
+
+int  a = 3000;/*The length of the Normal High State when
+  /*Pedestrian State is not Activated Value = 3 seconds */
+       
+ digitalWrite(redwalk, HIGH);       
+  digitalWrite(greenlight, HIGH);
+  delay(3000); // Wait for 3000 millisecond(s)
+  digitalWrite(greenlight, LOW);
+          
+  digitalWrite(yellowlight, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(yellowlight, LOW);
+  
+  /*If cycle exits the loop when button presses between 
+  yellow and red as stated in the challenge*/
+  //PAY ATTENTION TO THE BRACKETS
+ if (buttonState == HIGH) {     
+   {digitalWrite(greenwalk, HIGH);
+    digitalWrite(redlight,HIGH);
+    digitalWrite(redwalk, LOW);
+   } //Important sets GreenWalk Lights Length On
+   delay(5000);// Wait for 5000 millisecond(s)
+   digitalWrite(greenwalk,LOW);
+   a = a - 3000;/* Reassigns the Variable to Value 0
+   On the Red Traffic Light. This Assures that when the
+   Pedestrian Light is Off, the Traffic Light goes Green*/
+ 
+     }         else{
+         /*If Pedestrian Button not Pressed, traffic lights
+         proceed as Normal -REDUNDANT*/
+          digitalWrite(redwalk,HIGH);
+          
+         }  {
+  
+  digitalWrite(redlight, HIGH);
+  delay(a); // Wait for 3000 millisecond(s)
+  digitalWrite(redlight, LOW);        
+
+  }}
